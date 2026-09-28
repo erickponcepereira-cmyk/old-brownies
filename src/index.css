@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Tokens: DESIGN.md */
+@theme {
+  --color-tinta: #0b0b0a;
+  --color-carvao: #151513;
+  --color-grafite: #1f1f1c;
+  --color-fio: #3a3833;
+  --color-osso: #f1ece0;
+  --color-cinza: #a8a295;
+  --color-verde: #5bd48a;
+  --color-vermelho: #ff5a4e;
+  --color-ambar: #f2b544;
+
+  --font-titulo: 'Cinzel', 'Times New Roman', serif;
+  --font-texto: 'Josefin Sans', system-ui, sans-serif;
+
+  --radius-deco: 2px;
+  --spacing-toque: 56px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-tinta text-osso font-texto antialiased;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3 {
+    @apply font-titulo;
+  }
+  input, select, textarea, button {
+    font: inherit;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-osso);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Filete duplo art déco */
+  .filete-duplo {
+    height: 5px;
+    border-top: 1px solid var(--color-fio);
+    border-bottom: 1px solid var(--color-fio);
+  }
+  /* Moldura dupla: reservada ao número principal da tela */
+  .moldura {
+    border: 1px solid var(--color-osso);
+    outline: 1px solid var(--color-fio);
+    outline-offset: 3px;
+  }
+  .campo {
+    @apply w-full min-h-12 rounded-deco border border-fio bg-carvao px-3 text-osso placeholder:text-cinza/70;
+  }
+  .rotulo {
+    @apply text-[13px] font-bold uppercase tracking-[0.08em] text-cinza;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
